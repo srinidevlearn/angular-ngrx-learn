@@ -1,5 +1,24 @@
 <div id="holy-grail-grid-container">
-    <header>Header</header>
-    <nav>Navigation</nav>
-    <main>Main area</main>
+    <header>App</header>
+    <nav>
+        <div class="flex-container-column-based">
+            <div class="top-flex-content">
+
+                <div class="inner-flex" [ngClass]="activeClass === 'weather' ? 'active' : '' " (click)="clickActive('weather')">
+                    <div><i class="fa fa-globe" aria-hidden="true"></i></div>
+                    <div>Weather</div>
+                </div>
+                <div class="inner-flex" [ngClass]="activeClass === 'calc'? 'active' : ''" (click)="clickActive('calc')">
+                    <div><i class="fa fa-calculator" aria-hidden="true"></i></div>
+                    <div>Calculator</div>
+                </div>
+            </div>
+
+
+            <!-- <div class="bottom-flex-content">Close</div> -->
+        </div>
+    </nav>
+    <main>
+        <ng-content></ng-content>
+    </main>
 </div>

@@ -1,0 +1,15 @@
+.card {
+  display: grid;
+  grid-column: auto;
+  /* border: 1px solid red; */
+  width: 180px;
+  /* height: 180px; */
+  min-height: 150px;
+  height: 100px;
+  padding: 10px 10px;
+  min-width: 280px;
+  background: transparent;
+  border-radius: 40px;
+  box-shadow: 0px 0px 6px #fff;
+  color: white !important;
+}

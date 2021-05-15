@@ -1,0 +1,124 @@
+<div class="weather-container">
+    <header>
+        <div class="mini-weather-card" *ngFor="let item of sevenDayRes">
+            <div class="text-center">{{item.day | date: 'EEE'}}</div>
+            <div class="text-center">
+                <img [src]="imageAssets[item.desc]" width="50" height="50">
+            </div>
+            <div style="display:flex;justify-content: space-evenly;align-items: stretch;align-content: center;">
+                <div style="font-weight: bold;">{{item.max | slice:0:4}}&deg;</div>
+                <div style="font-weight: bold;color:whitesmoke">{{item.min | slice:0:4}}&deg;</div>
+            </div>
+        </div>
+    </header>
+    <aside>
+        <div class="flex">
+            <div style="margin: 0px auto; height: 50px;">
+                <input type="search" class="search-box">
+            </div>
+            <div style="text-align:center">
+
+                <img [src]="imageAssets[currentDay.desc]" width="250" height="250" alt="Kiwi standing on oval">
+
+            </div>
+            <div class="degree-celcius-card">
+                {{currentDay.feels_alike | slice : 0 : 4}} <span style="font-size: 2rem;vertical-align: super;">&deg;
+                    C</span>
+
+            </div>
+            <div class="current-day-card">
+                {{currentDay.day | date : 'EEEE'}}, <span style="color:whitesmoke;font-size: 1rem;">{{currentDay.day | date
+                    : 'HH : MM'}}</span>
+            </div>
+            <div>
+
+                <div class="content-card">
+                    <div style="padding-left: 1.3rem; font-weight: bolder;">{{currentDay.desc | titlecase}}</div>
+                    <!-- <h4>Precipitation - {{currentDay.percipitation | percent}}</h4> -->
+                    <div class="" style="/* display: grid; *//* grid-template-rows: auto auto; */display: grid;grid-template-columns: auto auto;justify-content: flex-start;align-items: center;/* height: 20px; */">
+                        <div><img src="assets/w_icons/static/cloudy.svg"></div>
+                        <div> <span style="vertical-align: center;"> {{currentDay.percipitation | percent}}</span></div>
+                    </div>
+                   
+
+                </div>
+            </div>
+        </div>
+    </aside>
+    <main>
+        <div style="padding: 1.5rem;padding-left: 2.5rem;/* font-size: 1rem; */font-weight: bold;color:white;" class="">Today's
+            highlight</div>
+        <div class="lower-content">
+            
+            <app-card>
+                <div class="title-card">Feels Like at &deg;C</div>
+                <app-image-column-chart [currentDay]="currentDay" [currentDayTemp]="currentDayTemp"></app-image-column-chart>
+
+            </app-card>
+            <app-card>
+                <div class="title-card">Humidity</div>
+              
+
+                <app-pictorial-chart [currentDay]="currentDay" [currentDayTemp]="currentDayTemp"></app-pictorial-chart>
+
+            </app-card>
+            <app-card class="text-left">
+                <div class="title-card">UV Index</div>
+             
+                <app-uv-chart [currentDay]="currentDay" [currentDayTemp]="currentDayTemp"></app-uv-chart>
+            </app-card>
+            <app-card class="tex-left">
+                <div class="title-card">Wind Status</div>
+                <div style="font-size: 4rem;font-family: 'Merriweather Sans';padding-left: 1rem;color:wetasphalt">
+                    {{currentDay.wind_speed}}<span style="font-size: 2rem;vertical-align: center;"> m/s</span></div>
+                    <div></div>
+
+            </app-card>
+            <app-card class="text-left">
+                <div class="title-card">Sunrise & Sunset</div>
+                <div class="text-center">
+                    <img src="assets/w_icons/animated/cloudy-day-1.svg" width="80" height="80">
+                </div>
+
+
+                <div class="sun-event-card">
+                    <div>
+
+
+                        <div><span><i class="fa fa-arrow-circle-up fa-1x"
+                                    style="color:#ff9800;padding-right: 10px;"></i></span>{{currentDay.sunrise |
+                            date:'hh:mm a'}}</div>
+                    </div>
+                    <div>
+
+
+
+                        <div><span><i class="fa fa-arrow-circle-down fa-1x"
+                                    style="color:#ff9800;padding-right: 10px;"></i></span>{{currentDay.sunset |
+                            date:'hh:mm a'}}</div>
+
+                    </div>
+                </div>
+
+            </app-card>
+
+            <!-- </div>
+        <div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content: space-between;align-items: center;align-content: flex-end;"> -->
+            
+            <app-card>
+                <div class="title-card">Others</div>
+
+                <div style="padding-left: 15px;">Pressure above sea level will be <b>{{currentDay.pressure}}hPa</b></div>
+
+
+                <div style="padding-left: 15px;">There will be dew with<b> {{currentDay.dew_point}} &deg;C </b></div>
+
+
+                <div style="padding-left: 15px;">Only <b>{{currentDay.percipitation | percent}}</b> chance of raining</div>
+      
+        </app-card>
+
+</div>
+
+</main>
+</div>

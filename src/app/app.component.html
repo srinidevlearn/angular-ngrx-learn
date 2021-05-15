@@ -3,4 +3,7 @@
   Start editing to see some magic happen :)
 </p> -->
 
-<app-layout></app-layout>
+<app-layout (selectedMenu)="selectApp($event)">
+  <app-weather *ngIf="lookFor == 'weather'"></app-weather>
+  <app-calc *ngIf="lookFor == 'calc'"></app-calc>
+</app-layout>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-layout',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
+
+  activeClass = "weather"
+
+  @Output() selectedMenu = new EventEmitter()
+
   constructor() { }
 
   ngOnInit(): void {
+
+    this.clickActive(this.activeClass)
+  }
+
+  clickActive(menu: string) {
+    this.activeClass = menu;
+    this.selectedMenu.emit({ menu })
   }
 
 }
