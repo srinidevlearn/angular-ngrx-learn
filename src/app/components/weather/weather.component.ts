@@ -19,8 +19,8 @@ import {
   tap,
 } from "rxjs/operators";
 
-import { DailyWeather } from "src/app/interfaces/interface";
-import { KEY, res, sevenDaysCast } from "src/assets/key";
+import { DailyWeather } from "../../interfaces/interface";
+import { KEY, res, sevenDaysCast } from "../../../assets/key";
 declare const am4core: any;
 declare const am4themes_animated: any;
 declare const am4charts: any;
