@@ -8,13 +8,13 @@
 <div class="flex-container">
 
     <div class="calc-card-range">
-        <p class="text-card">Range</p>
+        <p class="text-card">{{activeClass | titlecase}}</p>
         
        
         <div class="slider">
             <div style="display:flex;justify-content: space-between;padding:20px 0px;align-items: center">
                 
-                <div><b>Amount</b></div>
+                <div><b>Loan</b></div>
 
                 <div>
                     <input type="number" class="range-box-input" [(ngModel)]="emiInput.amount" min="1" (change)="changeEvent();">
@@ -60,10 +60,9 @@
     </div>
     <div class="calc-card-chart">
         <p class="text-card">Chart</p>
-        <p> </p>
         <div class="text-center"><b>Monthly amount : {{latestRate | currency : 'INR'}}</b></div>
 
-        <div id="chartdiv"></div>
+        <div id="chartdivfinance"></div>
     </div>
 
 </div>

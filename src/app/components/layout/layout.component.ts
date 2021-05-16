@@ -9,7 +9,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class LayoutComponent implements OnInit {
 
 
-  activeClass = "calc"
+  activeClass = "weather"
 
   @Output() selectedMenu = new EventEmitter()
 

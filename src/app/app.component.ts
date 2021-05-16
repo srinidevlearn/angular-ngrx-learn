@@ -5,21 +5,16 @@ import { Component } from '@angular/core';
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ],
-  animations: [
-    trigger('fade', [
-      transition('* => *', [ // using status here for transition
-        style({ height: 0 }),
-        animate(3000, style({ height: 0 }))
-      ]),
-      transition('* => *', [
-        animate(1000, style({ height: 100 }))
-      ])
-    ])
-  ]
+ 
 })
 export class AppComponent  {
   name = 'Angular';
-  lookFor = ""
+  lookFor = "weather";
+  constructor(){}
+  ngOnInit(){
+
+    this.selectApp(this.lookFor);
+  }
   selectApp=(e)=>{
     this.lookFor = e.menu;
   }

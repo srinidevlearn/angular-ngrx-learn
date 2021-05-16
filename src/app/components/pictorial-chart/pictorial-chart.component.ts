@@ -12,17 +12,41 @@ declare const am4themes_frozen: any;
   styleUrls: ['./pictorial-chart.component.css']
 })
 export class PictorialChartComponent implements OnInit {
-  @Input() currentDay:any;
+  chartData = [{
+    "name": "Dryness",
+    "value": 0,
+    "disabled": true,
+    "color": am4core.color('#90caf9'),
+
+  }, {
+    "name": "Humidity",
+    "value": 0,
+    "color": am4core.color("#42a5f5")
+
+  }]
+
+  @Input() set currentDay(value:any){
+//100 - this.currentDay.humidity
+//this.currentDay.humidity
+
+// this.chart.data = 
+this.humidity_chart(this.chartData.map(item=>{
+    item.value = item.name.toLowerCase() === 'dryness' ? 100 - value.humidity : value.humidity;
+    return item}))
+// 
+// })
+  }
   @Input() currentDayTemp:any;
+  chart: any;
   constructor() { }
 
   ngOnInit(): void {
   
-    this.humidity_chart();
+    this.humidity_chart(this.chartData);
   }
 
   
-  humidity_chart() {
+  humidity_chart(data:any) {
     /**
      * ---------------------------------------
      * This demo was created using amCharts 4.
@@ -50,19 +74,9 @@ export class PictorialChartComponent implements OnInit {
     chart.hiddenState.properties.opacity = 1; // this makes initial fade in effect
     // chart.paddingLeft = 150;
     am4core.addLicense("ch-custom-attribution");
+    this.chart = chart;
 
-    chart.data = [{
-      "name": "Dryness",
-      "value": 100 - this.currentDay.humidity,
-      "disabled": true,
-      "color": am4core.color('#90caf9'),
-
-    }, {
-      "name": "Humidity",
-      "value": this.currentDay.humidity,
-      "color": am4core.color("#42a5f5")
-
-    }];
+    chart.data = data;
 
     // console.log(chart)
 
@@ -98,5 +112,8 @@ export class PictorialChartComponent implements OnInit {
     // chart.legend.markers.template.width = 20;
     // chart.legend.markers.template.height = 20;
     // marker.cornerRadius(20,20,20,20);
+  }
+  ngOnDestroy(){
+    this.chart.dispose();
   }
 }

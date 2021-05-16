@@ -1,5 +1,7 @@
 <div class="weather-container" [@bubbleGrow] >
     <header>
+        <!-- <div>{{cityName$ |async}}</div> -->
+        
         <div class="mini-weather-card" *ngFor="let item of sevenDayRes">
             <div class="text-center">{{item.day | date: 'EEE'}}</div>
             <div class="text-center">
@@ -14,9 +16,12 @@
     </header>
   
     <aside>
+        <div class="text-center title-card">{{response.name}}</div>
+
         <div class="flex">
             <div style="margin: 0px auto; height: 50px;">
-                <input type="search" class="search-box">
+                <input type="search" class="search-box" (input)="inputEvent($event)">
+                
             </div>
             <div style="text-align:center">
 
@@ -29,8 +34,8 @@
 
             </div>
             <div class="current-day-card">
-                {{currentDay.day | date : 'EEEE'}}, <span style="color:whitesmoke;font-size: 1rem;">{{currentDay.day | date
-                    : 'HH : MM'}}</span>
+                {{currentDay.day | date : 'EEEE'}}, <span style="color:whitesmoke;font-size: 1rem;">{{now| date
+                    : 'HH : mm'}}</span>
             </div>
             <div>
 

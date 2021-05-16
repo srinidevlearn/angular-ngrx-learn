@@ -14,50 +14,56 @@ declare const am4themes_frozen: any;
 export class ImageColumnChartComponent implements OnInit {
   
   @Input() currentDay:any;
-  @Input() currentDayTemp:any;
+  @Input() set currentDayTemp(value:any){
+    console.log(value)
+    this.feelsLikeChart(value);
+  };
+  chart: any;
 
 
   constructor() { }
 
   ngOnInit(): void {
-    this.feelsLikeChart();
+    // this.feelsLikeChart(this.currentDayTemp);
   }
 
-  feelsLikeChart() {
+  feelsLikeChart(data:any) {
 
     // Themes begin
     am4core.useTheme(am4themes_animated);
     am4core.addLicense("ch-custom-attribution");
   
     // Themes end
+    console.log(data)
+
 
     // Create chart instance
     var chart = am4core.create("feelslikechart", am4charts.XYChart);
-
+    this.chart = chart;
     // Add data
     chart.data = [
       {
         "name": "morning",
-        "points": this.currentDayTemp.morn,
+        "points": data.morn ? data.morn : 0,
         "color": 'rgba(127,87,194,0.8)',
         //chart.colors.next(),
         // "bullet": "https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-day-1.svg"
         "bullet": 'assets/w_icons/animated/cloudy-day-1.svg'
       }, {
         "name": "day",
-        "points": this.currentDayTemp.day,
+        "points": data.day ?data.day : 0,
         "color": 'rgba(30,136,229,0.8)',
         //chart.colors.next(),
         "bullet": "assets/w_icons/animated/day.svg"
       }, {
         "name": "evening",
-        "points": this.currentDayTemp.eve,
+        "points": data.eve ?data.eve :0,
         "color": 'rgba(66,165,245,0.8)',
         //chart.colors.next(),
         "bullet": "assets/w_icons/animated/cloudy-night-1.svg"
       },{
         "name": "night",
-        "points": this.currentDayTemp.night,
+        "points": data.night ?data.night:0,
         "color": 'rgba(38,50,56,0.8)',
         //chart.colors.next(),
         "bullet": "assets/w_icons/animated/night.svg"
@@ -77,7 +83,7 @@ export class ImageColumnChartComponent implements OnInit {
     var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
     valueAxis.renderer.grid.template.strokeDasharray = "5,5";
     valueAxis.renderer.labels.template.disabled = true;
-    valueAxis.min = 0;
+    valueAxis.min = -2;
 
     // Do not crop bullets
     chart.maskBullets = false;
@@ -108,6 +114,12 @@ export class ImageColumnChartComponent implements OnInit {
     image.tooltipText = series.columns.template.tooltipText;
     image.propertyFields.fill = "color";
     image.filters.push(new am4core.DropShadowFilter());
+
+    console.log(this.chart)
+  }
+
+  ngOnDestroy(){
+    this.chart.dispose();
   }
 
 }

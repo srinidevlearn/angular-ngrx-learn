@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {HttpClientModule} from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 
 
@@ -19,7 +19,7 @@ import { ImageColumnChartComponent } from './components/image-column-chart/image
 import { UvChartComponent } from './components/uv-chart/uv-chart.component';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule,BrowserAnimationsModule ],
+  imports:      [ BrowserModule, FormsModule,BrowserAnimationsModule,HttpClientModule ],
   declarations: [ AppComponent, HelloComponent, LayoutComponent, WeatherComponent, CalcComponent, CardComponent, PictorialChartComponent, ImageColumnChartComponent, UvChartComponent ],
   providers: [OsmService], 
   bootstrap:    [ AppComponent ]

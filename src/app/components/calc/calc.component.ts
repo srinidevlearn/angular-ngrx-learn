@@ -31,10 +31,10 @@ export class CalcComponent implements OnInit {
   activeClass: string = this.menu[0];
 
   latestRate = 0;
+  chart:any
 
   constructor() {
     this.fx = new Finance();
-    this.changeEvent();
   }
 
   changeEvent() {
@@ -67,7 +67,8 @@ export class CalcComponent implements OnInit {
 
   ngOnInit(): void {
     this.clickActive(this.activeClass);
-    this.pieChart();
+    this.changeEvent();
+   
   }
 
   clickActive(item) {
@@ -96,17 +97,18 @@ export class CalcComponent implements OnInit {
     // Themes end
 
     // Create chart instance
-    var chart = am4core.create("chartdiv", am4charts.PieChart);
+    var chart = am4core.create("chartdivfinance", am4charts.PieChart);
+    this.chart = chart;
     am4core.addLicense("ch-custom-attribution");
 
     let data = [
       {
         label: "Interest",
-        value: this.latestRate * this.emiInput.month - this.emiInput.amount,
+        value: Math.ceil(this.latestRate * this.emiInput.month - this.emiInput.amount),
         color: "#818cf8",
       },
       {
-        label: "Initial Loan Amount",
+        label: "Loan",
         value: this.emiInput.amount,
         color: "#ff80ab",
       },
@@ -135,12 +137,25 @@ export class CalcComponent implements OnInit {
     pieSeries.hiddenState.properties.opacity = 1;
     pieSeries.hiddenState.properties.endAngle = -90;
     pieSeries.hiddenState.properties.startAngle = -90;
+    pieSeries.legendSettings.labelText = '{category}';
+    pieSeries.legendSettings.valueText = '{value}';
 
+    chart.legend = new am4charts.Legend();
+    
     let label = pieSeries.createChild(am4core.Label);
-    label.text = 'Total ₹'+Math.ceil(this.latestRate * this.emiInput.month);
+    label.text = `Total ₹ ${Math.ceil(this.latestRate * this.emiInput.month)}`;
     label.horizontalCenter = "middle";
     label.verticalCenter = "middle";
     label.fontFamily = 'Archivo, sans-serif'
-    label.fontSize = 14;
+    label.fontSize = 12;
+    /**
+     * 
+     *  Interest Amount : ₹ ${Math.ceil(this.latestRate * this.emiInput.month - this.emiInput.amount)}
+    Actual Amount : ₹ ${this.emiInput.month}
+     */
+  }
+
+  ngOnDestroy(){
+    this.chart.dispose();
   }
 }

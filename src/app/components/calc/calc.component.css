@@ -190,7 +190,7 @@ font-family: 'Archivo', sans-serif;
        background-attachment: fixed, fixed;
        background-clip: padding-box, border-box;
   }
-  #chartdiv {
+  #chartdivfinance {
     width: 100%;
     height: 300px;
   }

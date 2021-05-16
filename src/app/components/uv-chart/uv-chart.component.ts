@@ -9,13 +9,19 @@ declare const am4themes_kelly: any;
   styleUrls: ['./uv-chart.component.css']
 })
 export class UvChartComponent implements OnInit {
-  @Input() currentDay: any;
+  @Input() set currentDay(value:any){
+    if(value && this.hand)this.hand.showValue(Math.round(+value.uvi))
+    
+  };
   @Input() currentDayTemp: any;
+  chart: any;
+  hand: any;
   constructor() { }
 
   ngOnInit(): void {
     this.chartData();
   }
+
 
 
   chartData() {
@@ -32,6 +38,7 @@ export class UvChartComponent implements OnInit {
     chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
 
     chart.innerRadius = -15;
+    this.chart = chart;
 
     let axis = chart.xAxes.push(new am4charts.ValueAxis());
     axis.min = 0;
@@ -64,15 +71,19 @@ export class UvChartComponent implements OnInit {
     range2.axisFill.zIndex = -1;
 
     let hand = chart.hands.push(new am4charts.ClockHand());
+    this.hand = hand;
     hand.pin.disabled = true;
     hand.fill = am4core.color("#fff");
     hand.stroke = am4core.color("#fff");
     hand.innerRadius = am4core.percent(50);
     hand.radius = am4core.percent(80);
     hand.startWidth = 10;
+    hand.showValue(Math.round(1))
     // using chart.setTimeout method as the timeout will be disposed together with a chart
-    hand.showValue(Math.round(+this.currentDay.uvi))
 
 
+  }
+  ngOnDestroy(){
+    this.chart.dispose();
   }
 }
