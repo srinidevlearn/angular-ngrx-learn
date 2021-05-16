@@ -1,3 +1,4 @@
+import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { DailyWeather } from 'src/app/interfaces/interface';
 import { res, sevenDaysCast } from "src/assets/key";
@@ -11,7 +12,28 @@ declare const am4themes_frozen: any;
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.css']
+  styleUrls: ['./weather.component.css'],
+  animations: [
+    trigger('bubbleGrow', [
+      transition(':enter', [
+        animate('550ms ease-in-out',  keyframes([
+          style({transform: 'scaleY(0)'}),
+          style({transform: 'scaleY(1.1)'}),
+          style({transform: 'scaleY(1)'}),
+        ]))
+      ]),
+      transition(':leave', [
+        animate('1550ms ease-in-out',  keyframes([
+          // style({transform: 'translateX(1)'}),
+          // style({transform: 'scale(1.1)'}),
+          // style({transform: 'scale(0)'})
+          style({transform: 'scaleX(1)'}),
+        //  style({transform: 'scaleX(1.1)'}),
+          style({transform: 'scaleX(0)'})
+        ]))
+      ]),
+    ])
+  ]
 })
 
 

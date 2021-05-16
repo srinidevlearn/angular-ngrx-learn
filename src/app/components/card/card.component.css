@@ -8,8 +8,8 @@
   height: 100px;
   padding: 10px 10px;
   min-width: 280px;
-  background: transparent;
+  background: linear-gradient(90deg, rgb(165, 180, 252));
   border-radius: 40px;
-  box-shadow: 0px 0px 6px #fff;
+  box-shadow: 0px 0px 10px #fff;
   color: white !important;
 }

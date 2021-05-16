@@ -55,12 +55,12 @@ export class PictorialChartComponent implements OnInit {
       "name": "Dryness",
       "value": 100 - this.currentDay.humidity,
       "disabled": true,
-      "color": am4core.color('rgba(255,255,255,0.8)'),
+      "color": am4core.color('#90caf9'),
 
     }, {
       "name": "Humidity",
       "value": this.currentDay.humidity,
-      "color": am4core.color("rgba(255,255,255,0.8)")
+      "color": am4core.color("#42a5f5")
 
     }];
 
@@ -77,6 +77,8 @@ export class PictorialChartComponent implements OnInit {
     // this makes only A label to be visible
     series.labels.template.propertyFields.disabled = "disabled";
     series.ticks.template.propertyFields.disabled = "disabled";
+    series.slices.template.propertyFields.fill = "color";
+
     // am4core.color("#eee")
   
 

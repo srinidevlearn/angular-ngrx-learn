@@ -12,16 +12,25 @@
         "aside head"
         "aside main"
         "aside main";
-    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-columns: 0.5fr 2fr;
     /* grid-template-rows: 0.5fr 3fr; */
     box-shadow: 0px 5px 5px rgb(103 58 183 / 50%);
     /* background: whitesmoke; */
     /* background: linear-gradient(90deg, rgb(249, 168, 212), rgb(216, 180, 254), rgb(129, 140, 248)); */
-    background: linear-gradient(90deg, rgb(165, 180, 252), rgb(192, 132, 252));
-   
+    background: linear-gradient(90deg, rgba(165, 180, 252,0.9), rgba(192, 132, 252,0.9));
+    align-content:space-around;
 }
 
-
+.highlight-text-today{
+    padding-left: 2.5rem;
+    padding: 10px;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: -412px;
+    right: -295px;
+    z-index: 0999;
+}
 
 
 .lower-content{

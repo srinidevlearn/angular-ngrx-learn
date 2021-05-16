@@ -1,1 +1,69 @@
-<p>calc works!</p>
+<div class="tab">
+    <ng-container *ngFor="let item of menu">
+        <button type="button" class="menu" value="item" [ngClass]="activeClass === item ? 'active' : '' "
+            (click)="clickActive(item)">{{item}}</button>
+    </ng-container>
+</div>
+
+<div class="flex-container">
+
+    <div class="calc-card-range">
+        <p class="text-card">Range</p>
+        
+       
+        <div class="slider">
+            <div style="display:flex;justify-content: space-between;padding:20px 0px;align-items: center">
+                
+                <div><b>Amount</b></div>
+
+                <div>
+                    <input type="number" class="range-box-input" [(ngModel)]="emiInput.amount" min="1" (change)="changeEvent();">
+                    <span>Rs.</span>
+                </div>
+
+            </div>
+            <span class="gdas-menu-left"><input type="range" name="gdas-range" min="1000" max="10000000" value="20" [(ngModel)]="emiInput.amount" class="gdas-range" (change)="changeEvent();" maxlength="9"></span>
+
+          </div>
+
+          <div class="slider">
+            <div style="display:flex;justify-content: space-between;padding:20px 0px;align-items: center">
+                
+           
+                <div><b>Rate of Interest</b></div>
+
+                <div>
+                    
+                    <input type="number" class="range-box-input" [(ngModel)]="emiInput.interest" min="1" steps="0.5" max="25" (change)="changeEvent();" maxlength="2">
+
+                    <span>%</span>
+                </div>
+
+            </div>
+            <span class="gdas-menu-left"><input type="range" name="gdas-range" min="1" max="25" value="20" [(ngModel)]="emiInput.interest" class="gdas-range" (change)="changeEvent();"></span>
+
+          </div>
+          <div class="slider">
+            <div style="display:flex;justify-content: space-between;padding:20px 0px;align-items: center">
+                
+                <div><b>Month</b></div>
+                <div>
+                    <input type="number" class="range-box-input" [(ngModel)]="emiInput.month" min="1"  max="500" (change)="changeEvent();" maxlength="3">
+                    <span>M</span>
+
+                </div>
+
+            </div>
+            <span class="gdas-menu-left"><input type="range" name="gdas-range" min="1" max="500" value="20" [(ngModel)]="emiInput.month" (change)="changeEvent();" class="gdas-range"></span>
+
+          </div>
+    </div>
+    <div class="calc-card-chart">
+        <p class="text-card">Chart</p>
+        <p> </p>
+        <div class="text-center"><b>Monthly amount : {{latestRate | currency : 'INR'}}</b></div>
+
+        <div id="chartdiv"></div>
+    </div>
+
+</div>

@@ -9,14 +9,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class LayoutComponent implements OnInit {
 
 
-  activeClass = "weather"
+  activeClass = "calc"
 
   @Output() selectedMenu = new EventEmitter()
 
   constructor() { }
 
   ngOnInit(): void {
-
     this.clickActive(this.activeClass)
   }
 

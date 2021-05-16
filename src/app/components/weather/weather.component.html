@@ -1,4 +1,4 @@
-<div class="weather-container">
+<div class="weather-container" [@bubbleGrow] >
     <header>
         <div class="mini-weather-card" *ngFor="let item of sevenDayRes">
             <div class="text-center">{{item.day | date: 'EEE'}}</div>
@@ -10,7 +10,9 @@
                 <div style="font-weight: bold;color:whitesmoke">{{item.min | slice:0:4}}&deg;</div>
             </div>
         </div>
+       
     </header>
+  
     <aside>
         <div class="flex">
             <div style="margin: 0px auto; height: 50px;">
@@ -44,10 +46,10 @@
                 </div>
             </div>
         </div>
+       
     </aside>
     <main>
-        <div style="padding: 1.5rem;padding-left: 2.5rem;/* font-size: 1rem; */font-weight: bold;color:white;" class="">Today's
-            highlight</div>
+      
         <div class="lower-content">
             
             <app-card>

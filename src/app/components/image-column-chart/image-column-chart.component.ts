@@ -39,26 +39,26 @@ export class ImageColumnChartComponent implements OnInit {
       {
         "name": "morning",
         "points": this.currentDayTemp.morn,
-        "color": 'rgba(127,87,194,0.5)',
+        "color": 'rgba(127,87,194,0.8)',
         //chart.colors.next(),
         // "bullet": "https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/cloudy-day-1.svg"
         "bullet": 'assets/w_icons/animated/cloudy-day-1.svg'
       }, {
         "name": "day",
         "points": this.currentDayTemp.day,
-        "color": 'rgba(30,136,229,0.5)',
+        "color": 'rgba(30,136,229,0.8)',
         //chart.colors.next(),
         "bullet": "assets/w_icons/animated/day.svg"
       }, {
         "name": "evening",
         "points": this.currentDayTemp.eve,
-        "color": 'rgba(66,165,245,0.5)',
+        "color": 'rgba(66,165,245,0.8)',
         //chart.colors.next(),
         "bullet": "assets/w_icons/animated/cloudy-night-1.svg"
       },{
         "name": "night",
         "points": this.currentDayTemp.night,
-        "color": 'rgba(38,50,56,0.5)',
+        "color": 'rgba(38,50,56,0.8)',
         //chart.colors.next(),
         "bullet": "assets/w_icons/animated/night.svg"
       },
